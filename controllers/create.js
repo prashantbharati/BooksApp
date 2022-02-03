@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import UserModel from "./models/user.js";
+import UserModel from "../models/user.js";
 
 const create = async (req, res) => {
   const mail = req.body.ReferredUserid;

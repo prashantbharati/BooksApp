@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import UserModel from "./models/user.js";
+import UserModel from "../models/user.js";
 
 const check = async (req, res) => {
   const email1 = req.body.email;
