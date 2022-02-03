@@ -63,41 +63,6 @@ app.post("/check", async (req, res) => {
   res.send("Your earning is " + val + " Rs");
 });
 
-app.get("/getposts", async (req, res) => {
-  try {
-    const postMessages = await UserModel.find();
-    const post0 = postMessages[0];
-    // console.log(post0._id);
-    console.log(post0.ReferredUserid);
-    const updatedPost = await UserModel.findById(post0._id);
-    // console.log(updatedPost);
-
-    // const posts = post.split(" ");
-    // console.log(posts[1]);
-    // console.log(postMessages);
-    res.status(200).json(postMessages);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-app.post("/createpost", async (req, res) => {
-  // const ruser = await UserModel.findOne({ email: "Ritik@gmail.com" });
-  // console.log(ruser);
-  // console.log(ruser._id);
-  const auser3 = new UserModel({
-    name: "ABC",
-    email: "ABC92@gmail.com",
-    ReferredUserid: null,
-    isPaymentMade: false,
-    TotalEarning: 0,
-  });
-
-  await auser3.save();
-
-  res.send("lol");
-});
-
 mongoose
   .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,

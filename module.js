@@ -4,7 +4,6 @@ import UserModel from "./models/user.js";
 const update = async (req, res) => {
   const email1 = req.body.email;
   const ruser = await UserModel.findOne({ email: email1 });
-  // const val = ruser.TotalEarning;
   const ruser2 = await UserModel.findById(ruser.ReferredUserid);
 
   const updatepost = await UserModel.findByIdAndUpdate(
@@ -25,8 +24,6 @@ const update = async (req, res) => {
     );
   }
 
-  // ruser2.TotalEarning=ruser2.TotalEarning+10;
-  // ruser.isPaymentMade=true;
   res.status(200).send(updatepost2);
 };
 
