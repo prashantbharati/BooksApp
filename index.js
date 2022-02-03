@@ -5,7 +5,7 @@ import express from "express";
 import path from "path";
 import UserModel from "./models/user.js";
 import dotenv from "dotenv";
-import update from "module.js";
+import update from "./module.js";
 
 const app = express();
 app.use(express.static("public"));

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import UserModel from "./models/user.js";
 
-export const update = async (req, res) => {
+const update = async (req, res) => {
   const email1 = req.body.email;
   const ruser = await UserModel.findOne({ email: email1 });
   // const val = ruser.TotalEarning;
