@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Signin Template for Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/styles.css" rel="stylesheet">
+  </head>
+
+  <!-- name: { type: String, required: true },
+  email: { type: String, required: true },
+  ReferredUserid: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  isPaymentMade: { type: Boolean, required: true },
+  TotalEarning: { type: Number, required: true }, -->
+
+
+  <body class="text-center">
+    <form  action="/check" class="form-signin" method="post">
+      <img src="data:image/jpeg;base64,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" alt="" width="80" height="80">
+      <h1 class="h3 mb-3 font-weight-normal">Check Your Earning</h1>
+      
+      <input name="email" type="text" class="form-control bottom" placeholder="Your Email" required autofocus>
+      <!-- <input name="email" type="text"  class="form-control middle" placeholder="Your Email" required> -->
+      <button class="btn btn-lg btn-primary btn-block" type="submit">ADD ME Up!</button>
+      <p class="mt-5 mb-3 text-muted">&copy; Prashant Bharati</p>
+    </form>
+  </body>
+</html>
