@@ -1,10 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
-  password: { type: String, required: true },
-  id: { type: String },
+  ReferredUser: { type: Schema.Types.ObjectId, ref: "User" },
+  isPaymentMade: { type: Boolean, required: true },
+  TotalEarning: { type: Number, required: true },
 });
 
 export default mongoose.model("User", userSchema);
