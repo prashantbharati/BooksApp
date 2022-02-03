@@ -1,32 +1,46 @@
 //123Prashant Prashant
 import mongoose from "mongoose";
+import bodyParser from "body-parser";
 import express from "express";
+import path from "path";
 import UserModel from "./models/user.js";
 import dotenv from "dotenv";
 
 const app = express();
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 dotenv.config();
 
 const PORT = 5000;
-
-const auser1 = new UserModel({
-  name: "Prashant",
-  email: "prashantbhrati92@gmail.com",
-  ReferredUserid: null,
-  isPaymentMade: false,
-  TotalEarning: 0,
-});
-
-const auser2 = new UserModel({
-  name: "Ritik",
-  email: "Ritik@gmail.com",
-  ReferredUserid: null,
-  isPaymentMade: false,
-  TotalEarning: 0,
-});
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.get("/", (req, res) => {
+  // console.log(__dirname);
   res.sendFile(__dirname + "/index.html");
+});
+
+app.post("/", async (req, res) => {
+  const mail = req.body.ReferredUserid;
+  if (mail != null) {
+    const ruser = await UserModel.findOne({ email: mail });
+    console.log(ruser);
+    if (ruser != null) req.body.ReferredUserid = ruser._id;
+    else req.body.ReferredUserid = null;
+  }
+  const data = req.body;
+
+  try {
+    const user = new UserModel({
+      ...data,
+    });
+    await user.save();
+    res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.get("/getposts", async (req, res) => {
@@ -48,13 +62,13 @@ app.get("/getposts", async (req, res) => {
 });
 
 app.post("/createpost", async (req, res) => {
-  const ruser = await UserModel.findOne({ email: "Ritik@gmail.com" });
-  console.log(ruser);
-  console.log(ruser._id);
+  // const ruser = await UserModel.findOne({ email: "Ritik@gmail.com" });
+  // console.log(ruser);
+  // console.log(ruser._id);
   const auser3 = new UserModel({
     name: "ABC",
     email: "ABC92@gmail.com",
-    ReferredUserid: ruser._id,
+    ReferredUserid: null,
     isPaymentMade: false,
     TotalEarning: 0,
   });
