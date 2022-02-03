@@ -7,7 +7,7 @@ import UserModel from "./models/user.js";
 import dotenv from "dotenv";
 import update from "./module.js";
 import create from "./create.js";
-
+import check from "./check.js";
 const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +20,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.get("/", (req, res) => {
-  // console.log(__dirname);
   res.sendFile(__dirname + "/index.html");
 });
 
@@ -32,18 +31,11 @@ app.get("/update", (req, res) => {
   res.sendFile(__dirname + "/update.html");
 });
 
-app.post("/");
+app.post("/", create);
 
 app.post("/update", update);
 
-app.post("/check", async (req, res) => {
-  const email1 = req.body.email;
-  const ruser = await UserModel.findOne({ email: email1 });
-  const val = ruser.TotalEarning;
-  console.log(val);
-  // res.send("lol");
-  res.send("Your earning is " + val + " Rs");
-});
+app.post("/check", check);
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
