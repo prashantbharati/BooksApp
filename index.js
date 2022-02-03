@@ -6,6 +6,7 @@ import path from "path";
 import UserModel from "./models/user.js";
 import dotenv from "dotenv";
 import update from "./module.js";
+import create from "./create.js";
 
 const app = express();
 app.use(express.static("public"));
@@ -31,26 +32,7 @@ app.get("/update", (req, res) => {
   res.sendFile(__dirname + "/update.html");
 });
 
-app.post("/", async (req, res) => {
-  const mail = req.body.ReferredUserid;
-  if (mail != null) {
-    const ruser = await UserModel.findOne({ email: mail });
-    console.log(ruser);
-    if (ruser != null) req.body.ReferredUserid = ruser._id;
-    else req.body.ReferredUserid = null;
-  }
-  const data = req.body;
-
-  try {
-    const user = new UserModel({
-      ...data,
-    });
-    await user.save();
-    res.json({ success: true });
-  } catch (error) {
-    console.log(error);
-  }
-});
+app.post("/");
 
 app.post("/update", update);
 
