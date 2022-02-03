@@ -26,7 +26,7 @@ const auser2 = new UserModel({
 });
 
 app.get("/", (req, res) => {
-  res.send("lololo");
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/getposts", async (req, res) => {
