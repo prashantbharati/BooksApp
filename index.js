@@ -1,7 +1,7 @@
 //123Prashant Prashant
 import mongoose from "mongoose";
 import express from "express";
-import UserModel from "/models/user.js";
+import UserModel from "./models/user.js";
 import dotenv from "dotenv";
 
 const app = express();
@@ -24,24 +24,6 @@ const auser2 = new UserModel({
   isPaymentMade: false,
   TotalEarning: 0,
 });
-
-// auser.save((err, data) => {
-// console.log(err);
-// });
-
-// try {
-//   auser2.save();
-//   console.log("lol");
-// } catch (error) {
-//   console.log(error);
-// }
-
-// try {
-//   const postMessages = await auser.find();
-//   console.log(postMessages);
-// } catch (error) {
-//   console.log(error);
-// }
 
 app.get("/", (req, res) => {
   res.send("lololo");
